@@ -1,0 +1,6 @@
+João da Silva;Profissional com mais de 10 anos no mercado;xxxxxxxxxx;100.02;2000-05-10;10:00
+Dr. Marcos Oliveira;Especialista em ortopedia e traumatologia, atuando há mais de 10 anos na área;12345678000123;50;2022-01-15;14:30
+Dra. Ana Santos;Psicóloga clínica com abordagem cognitivo-comportamental, auxiliando pessoas no enfrentamento de transtornos emocionais;98765432000123;80;2022-01-16;10:00
+Dr. Rafael Almeida;Dentista especializado em tratamentos estéticos e restaurações dentárias;45678912000123;100;2022-01-17;16:45
+Dra. Laura Costa;Nutricionista com foco em alimentação saudável e emagrecimento;78912345000123;70;2022-01-18;09:30
+Dr. João Silva;Advogado especializado em direito empresarial, prestando consultoria jurídica para empresas de pequeno e médio porte;65432198000123;120;2022-01-19;13:15
