@@ -1,0 +1,5 @@
+C;Elberth Moraes;12332122266;elberth@moraes.com;xxxxxxxxxxx;Cartao Debito;2000-04-01
+P;João da Silva;Profissional com mais de 10 anos no mercado;xxxxxxxxxx;100.02;2000-05-10;10:00
+E;teste;tipoTeste;xxxxxxxx;xx;xxxxxx;xxxx;xxxxxxxxxxx
+ConF;2023-12-01T10:11:00
+Ped;true

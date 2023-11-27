@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Pedido {
     private Cliente cliente;
-    private boolean consultaConfirmada;
+    private Boolean consultaConfirmada;
     private List<Consulta> formaReserva;
 
     @Override
