@@ -1,14 +1,24 @@
 package br.edu.infnet.model.domain;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Entity
 public class Consulta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Transient
     private Profissional profissional;
+    @Transient
     private Cliente cliente;
     private LocalDateTime horario;
 
+    @Transient
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMMM/YYYY HH:mm:ss");
     @Override
     public String toString() {
@@ -41,5 +51,13 @@ public class Consulta {
 
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

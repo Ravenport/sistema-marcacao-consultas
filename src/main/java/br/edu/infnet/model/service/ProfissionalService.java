@@ -1,6 +1,8 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Profissional;
+import br.edu.infnet.repository.ProfissionalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,13 +12,14 @@ import java.util.Map;
 
 @Service
 public class ProfissionalService {
-    private Map<String, Profissional> map = new HashMap<>();
+    @Autowired
+    private ProfissionalRepository profissionalRepository;
 
     public void Incluir(Profissional profissional) {
-        map.put(profissional.getCnpj(), profissional);
+        profissionalRepository.save(profissional);
     }
 
     public Collection<Profissional> obterLista() {
-        return map.values();
+        return profissionalRepository.findAll();
     }
 }

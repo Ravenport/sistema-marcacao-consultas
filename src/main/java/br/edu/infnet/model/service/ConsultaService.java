@@ -1,6 +1,8 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Consulta;
+import br.edu.infnet.repository.ConsultaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -9,13 +11,14 @@ import java.util.Map;
 
 @Service
 public class ConsultaService {
-    private Map<String, Consulta> mapa = new HashMap<>();
+    @Autowired
+    private ConsultaRepository consultaRepository;
 
     public void Incluir(Consulta consulta) {
-        mapa.put(consulta.getProfissional().getCnpj(), consulta);
+        consultaRepository.save(consulta);
     }
 
     public Collection<Consulta> obterLista() {
-        return mapa.values();
+        return consultaRepository.findAll();
     }
 }

@@ -1,5 +1,6 @@
 package br.edu.infnet.model.domain;
 
+import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
@@ -8,12 +9,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Profissional {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String nome;
     private String descricao;
     private String cnpj;
     private float valorConsulta;
+
+    @Transient
     private List<LocalDate> datasDisponiveis = new ArrayList<>();
+    @Transient
     private List<LocalTime> horasDisponiveis = new ArrayList<>();
 
     @Override
@@ -63,5 +73,13 @@ public class Profissional {
     }
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

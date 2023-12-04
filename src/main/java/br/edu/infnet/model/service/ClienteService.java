@@ -1,22 +1,21 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Cliente;
-import br.edu.infnet.model.domain.Profissional;
+import br.edu.infnet.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class ClienteService {
-    private Map <String, Cliente> mapa = new HashMap<>();
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     public void Incluir(Cliente cliente) {
-        mapa.put(cliente.getCpf(), cliente);
+        clienteRepository.save(cliente);
     }
 
     public Collection<Cliente> obterLista() {
-        return mapa.values();
+        return clienteRepository.findAll();
     }
 }
