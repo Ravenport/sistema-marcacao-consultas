@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Entity
 public class Consulta {
@@ -12,14 +11,20 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "profissional_id")
     private Profissional profissional;
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     private LocalDateTime horario;
 
     @Transient
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMMM/YYYY HH:mm:ss");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMMM/yyyy HH:mm:ss");
     @Override
     public String toString() {
         return "Consulta{" +
@@ -59,5 +64,13 @@ public class Consulta {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

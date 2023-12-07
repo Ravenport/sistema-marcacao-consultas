@@ -1,9 +1,8 @@
 package br.edu.infnet.model.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Endereco {
@@ -18,6 +17,10 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String complemento;
+
+    @OneToMany
+    @JoinColumn(name = "consulta_id")
+    private List<ConsultaFisica> consultaFisica;
 
     @Override
     public String toString() {
@@ -94,5 +97,13 @@ public class Endereco {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<ConsultaFisica> getConsultaFisica() {
+        return consultaFisica;
+    }
+
+    public void setConsultaFisica(List<ConsultaFisica> consultaFisica) {
+        this.consultaFisica = consultaFisica;
     }
 }

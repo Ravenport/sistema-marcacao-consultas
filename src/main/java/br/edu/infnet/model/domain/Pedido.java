@@ -14,10 +14,12 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     private Boolean consultaConfirmada;
-    @Transient
+    @OneToMany
+    @JoinColumn(name = "consulta_id")
     private List<Consulta> formaReserva;
 
     @Override

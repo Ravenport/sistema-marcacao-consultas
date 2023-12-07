@@ -1,11 +1,9 @@
 package br.edu.infnet.model.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -21,6 +19,14 @@ public class Cliente {
     private String formaPag;
     private LocalDate dataNascimento;
 
+    @OneToMany
+    @JoinColumn(name = "consulta_id")
+    private List<Consulta> consultas;
+
+    @OneToMany
+    @JoinColumn(name = "pedido_id")
+    private List<Pedido> pedido;
+
     @Override
     public String toString() {
         return "Cliente{" +
@@ -31,6 +37,14 @@ public class Cliente {
                 ", formaPag='" + getFormaPag() + '\'' +
                 ", dataNascimento=" + dataNascimento +
                 '}';
+    }
+
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public List<Pedido> getPedido() {
+        return pedido;
     }
 
     public void setDataNascimento(String data) {
@@ -87,5 +101,13 @@ public class Cliente {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
+    }
+
+    public void setPedido(List<Pedido> pedido) {
+        this.pedido = pedido;
     }
 }
