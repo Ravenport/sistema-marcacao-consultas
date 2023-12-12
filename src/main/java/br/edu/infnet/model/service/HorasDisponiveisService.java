@@ -1,5 +1,6 @@
 package br.edu.infnet.model.service;
 
+import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.domain.DiasDisponiveis;
 import br.edu.infnet.model.domain.HorasDisponiveis;
 import br.edu.infnet.repository.DiasDisponiveisRepository;
@@ -20,6 +21,6 @@ public class HorasDisponiveisService {
     }
 
     public Collection<HorasDisponiveis> obterLista() {
-        return horasDisponiveisRepository.findAll();
+        return (Collection<HorasDisponiveis>) horasDisponiveisRepository.findAll();
     }
 }

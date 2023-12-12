@@ -1,5 +1,6 @@
 package br.edu.infnet.model.service;
 
+import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.domain.Endereco;
 import br.edu.infnet.model.domain.Profissional;
 import br.edu.infnet.repository.EnderecoRepository;
@@ -20,6 +21,6 @@ public class EnderecoService {
     }
 
     public Collection<Endereco> obterLista() {
-        return enderecoRepository.findAll();
+        return (Collection<Endereco>) enderecoRepository.findAll();
     }
 }

@@ -1,6 +1,7 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Cliente;
+import br.edu.infnet.model.domain.Profissional;
 import br.edu.infnet.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,6 @@ public class ClienteService {
     }
 
     public Collection<Cliente> obterLista() {
-        return clienteRepository.findAll();
+        return (Collection<Cliente>) clienteRepository.findAll();
     }
 }

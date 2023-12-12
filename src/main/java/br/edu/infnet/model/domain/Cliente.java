@@ -1,6 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,12 +20,12 @@ public class Cliente {
     private String formaPag;
     private LocalDate dataNascimento;
 
-    @OneToMany
-    @JoinColumn(name = "consulta_id")
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private List<Consulta> consultas;
 
-    @OneToMany
-    @JoinColumn(name = "pedido_id")
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private List<Pedido> pedido;
 
     @Override

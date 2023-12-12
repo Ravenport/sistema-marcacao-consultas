@@ -1,7 +1,10 @@
 package br.edu.infnet.repository;
 
 import br.edu.infnet.model.domain.Pedido;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PedidoRepository extends ListCrudRepository<Pedido, Integer> {
+@Repository
+public interface PedidoRepository extends CrudRepository<Pedido, Integer> {
 }

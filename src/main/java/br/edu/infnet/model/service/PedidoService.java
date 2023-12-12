@@ -1,5 +1,6 @@
 package br.edu.infnet.model.service;
 
+import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.domain.Pedido;
 import br.edu.infnet.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,6 @@ public class PedidoService {
     }
 
     public Collection<Pedido> obterLista() {
-        return pedidoRepository.findAll();
+        return (Collection<Pedido>) pedidoRepository.findAll();
     }
 }

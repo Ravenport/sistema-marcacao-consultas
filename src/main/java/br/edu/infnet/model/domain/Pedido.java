@@ -1,6 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,12 +15,13 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     private Boolean consultaConfirmada;
-    @OneToMany
-    @JoinColumn(name = "consulta_id")
+
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "pedido_id")
     private List<Consulta> formaReserva;
 
     @Override
@@ -51,8 +53,8 @@ public class Pedido {
         return formaReserva;
     }
 
-    public void setFormaReserva(List<Consulta> formaReserva) {
-        this.formaReserva = formaReserva;
+    public void setFormaReserva(Consulta formaReserva) {
+        this.formaReserva.add(formaReserva);
     }
 
     public Integer getId() {

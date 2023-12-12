@@ -1,6 +1,1 @@
 Elberth Moraes;12332122266;elberth@moraes.com;xxxxxxxxxxx;Cartao Debito;2000-04-01
-Maria Silva;123.456.789-00;maria.silva@email.com;(11) 98765-4321;Débito;1990-06-15
-João Santos;987.654.321-00;joao.santos@email.com;(21) 12345-6789;Crédito;1985-09-25
-Ana Oliveira;456.789.123-00;ana.oliveira@email.com;(31) 54321-6789;Débito;1992-12-01
-Pedro Almeida;789.123.456-00;pedro.almeida@email.com;(41) 65432-1098;Crédito;1988-03-10
-Laura Costa;654.321.987-00;laura.costa@email.com;(51) 34567-8901;Débito;1995-07-20

@@ -4,6 +4,7 @@ import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.service.ClienteService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Order(4)
 public class ClienteLoader implements ApplicationRunner {
 
     private ClienteService service = new ClienteService();

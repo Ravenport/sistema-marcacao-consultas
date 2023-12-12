@@ -1,24 +1,26 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     private LocalDateTime horario;

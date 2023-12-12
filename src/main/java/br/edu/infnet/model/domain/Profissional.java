@@ -1,7 +1,9 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.springframework.cglib.core.Local;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,15 +23,15 @@ public class Profissional {
     private String cnpj;
     private float valorConsulta;
 
-    @OneToMany
-    @JoinColumn(name = "consulta_id")
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "profissional_id")
     private List<Consulta> consultas;
 
-    @OneToMany
-    @JoinColumn(name = "dia_id")
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "profissional_id")
     private List<DiasDisponiveis> datasDisponiveis;
-    @OneToMany
-    @JoinColumn(name = "hora_id")
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "profissional_id")
     private List<HorasDisponiveis> horasDisponiveis;
 
     @Override
@@ -96,15 +98,15 @@ public class Profissional {
         return datasDisponiveis;
     }
 
-    public void setDatasDisponiveis(List<DiasDisponiveis> datasDisponiveis) {
-        this.datasDisponiveis = datasDisponiveis;
+    public void setDatasDisponiveis(DiasDisponiveis datasDisponiveis) {
+        this.datasDisponiveis.add(datasDisponiveis);
     }
 
     public List<HorasDisponiveis> getHorasDisponiveis() {
         return horasDisponiveis;
     }
 
-    public void setHorasDisponiveis(List<HorasDisponiveis> horasDisponiveis) {
-        this.horasDisponiveis = horasDisponiveis;
+    public void setHorasDisponiveis(HorasDisponiveis horasDisponiveis) {
+        this.horasDisponiveis.add(horasDisponiveis);
     }
 }

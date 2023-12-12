@@ -1,7 +1,0 @@
-C;Elberth Moraes;12332122266;elberth@moraes.com;xxxxxxxxxxx;Cartao Debito;2000-04-01
-P;João da Silva;Profissional com mais de 10 anos no mercado;xxxxxxxxxx;100.02;2000-05-10;10:00
-E;teste;tipoTeste;xxxxxxxx;xx;xxxxxx;xxxx;xxxxxxxxxxx
-ConF;2023-12-01T10:11:00
-C;Maria Silva;123.456.789-00;maria.silva@email.com;(11) 98765-4321;Débito;1990-06-15
-P;Dr. Marcos Oliveira;Especialista em ortopedia e traumatologia, atuando há mais de 10 anos na área;12345678000123;50;2022-01-15;14:30
-ConR;2023-12-01T10:11:00;HTTPS://LocalHost:8000

@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class ProfissionalService {
+
     @Autowired
     private ProfissionalRepository profissionalRepository;
 
@@ -20,6 +18,6 @@ public class ProfissionalService {
     }
 
     public Collection<Profissional> obterLista() {
-        return profissionalRepository.findAll();
+        return (Collection<Profissional>) profissionalRepository.findAll();
     }
 }

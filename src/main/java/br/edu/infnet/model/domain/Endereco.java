@@ -1,6 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class Endereco {
     private String estado;
     private String complemento;
 
-    @OneToMany
-    @JoinColumn(name = "consulta_id")
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "endereço_id")
     private List<ConsultaFisica> consultaFisica;
 
     @Override
