@@ -2,6 +2,7 @@ package br.edu.infnet.appconsultas;
 
 import br.edu.infnet.model.domain.Endereco;
 import br.edu.infnet.model.service.EnderecoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -16,7 +17,8 @@ import java.util.Map;
 @Order(5)
 public class EnderecoLoader implements ApplicationRunner {
 
-    private EnderecoService service = new EnderecoService();
+    @Autowired
+    private EnderecoService service;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -30,17 +32,11 @@ public class EnderecoLoader implements ApplicationRunner {
         while (linha != null) {
             campos = linha.split(";");
 
-            Endereco endereco = new Endereco();
-            endereco.setLogradouro(campos[0]);
-            endereco.setTipoLogradouro(campos[1]);
-            endereco.setCep(campos[2]);
-            endereco.setNumero(campos[3]);
-            endereco.setCidade(campos[4]);
-            endereco.setEstado(campos[5]);
-            endereco.setComplemento(campos[6]);
+            Endereco endereco = new Endereco(campos[0]);
+            endereco = service.buscarCep(endereco.getCep());
+            endereco.setNumero(campos[1]);
 
             service.Incluir(endereco);
-
             linha = leitura.readLine();
         }
 

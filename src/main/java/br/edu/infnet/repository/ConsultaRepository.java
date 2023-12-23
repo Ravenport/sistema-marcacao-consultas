@@ -1,9 +1,9 @@
 package br.edu.infnet.repository;
 
-import br.edu.infnet.model.domain.DiasDisponiveis;
+import br.edu.infnet.model.domain.Consulta;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DiasDisponiveisRepository extends CrudRepository<DiasDisponiveis, Integer> {
+public interface ConsultaRepository extends CrudRepository<Consulta, Integer> {
 }

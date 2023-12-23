@@ -2,6 +2,7 @@ package br.edu.infnet.appconsultas;
 
 import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -16,7 +17,8 @@ import java.util.Map;
 @Order(4)
 public class ClienteLoader implements ApplicationRunner {
 
-    private ClienteService service = new ClienteService();
+    @Autowired
+    private ClienteService service;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

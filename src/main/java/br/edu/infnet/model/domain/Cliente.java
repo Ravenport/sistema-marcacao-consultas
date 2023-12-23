@@ -20,11 +20,11 @@ public class Cliente {
     private String formaPag;
     private LocalDate dataNascimento;
 
-    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private List<Consulta> consultas;
 
-    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private List<Pedido> pedido;
 

@@ -1,6 +1,5 @@
 package br.edu.infnet.model.service;
 
-import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.domain.ConsultaFisica;
 import br.edu.infnet.repository.ConsultaFisicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +19,9 @@ public class ConsultaFisicaService {
 
     public Collection<ConsultaFisica> obterLista() {
         return (Collection<ConsultaFisica>) consultaFisicaRepository.findAll();
+    }
+
+    public void excluir(Integer id) {
+        consultaFisicaRepository.deleteById(id);
     }
 }

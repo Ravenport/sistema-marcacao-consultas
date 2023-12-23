@@ -13,7 +13,7 @@ public class DiasDisponiveis {
 
     private LocalDate data;
 
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
 

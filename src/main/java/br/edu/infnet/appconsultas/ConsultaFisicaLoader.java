@@ -3,6 +3,7 @@ package br.edu.infnet.appconsultas;
 import br.edu.infnet.model.domain.*;
 import br.edu.infnet.model.service.ConsultaFisicaService;
 import br.edu.infnet.model.service.ConsultaRemotaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -13,9 +14,10 @@ import java.io.FileReader;
 import java.time.LocalDateTime;
 
 @Component
-@Order(6)
+@Order(8)
 public class ConsultaFisicaLoader implements ApplicationRunner {
-    ConsultaFisicaService service = new ConsultaFisicaService();
+    @Autowired
+    ConsultaFisicaService service;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -34,6 +36,15 @@ public class ConsultaFisicaLoader implements ApplicationRunner {
             Profissional profissional = new Profissional();
             profissional.setId(Integer.valueOf(campos[3]));
 
+            DiasDisponiveis diasDisponiveis = new DiasDisponiveis();
+            diasDisponiveis.setId(Integer.valueOf(campos[1]).intValue());
+
+            Pedido pedido = new Pedido();
+            pedido.setId(Integer.valueOf(campos[6]));
+
+            HorasDisponiveis horasDisponiveis = new HorasDisponiveis();
+            horasDisponiveis.setId(Integer.valueOf(campos[2]));
+
             Endereco endereco = new Endereco();
             endereco.setId(Integer.valueOf(campos[4]));
 
@@ -41,11 +52,13 @@ public class ConsultaFisicaLoader implements ApplicationRunner {
             cliente.setId(Integer.valueOf(campos[5]));
 
             ConsultaFisica consulta = new ConsultaFisica();
-
+            consulta.setId(Integer.valueOf(campos[7]));
             consulta.setEndereco(endereco);
             consulta.setProfissional(profissional);
-            consulta.setHorario(LocalDateTime.parse(campos[1]));
+            consulta.setHorario(horasDisponiveis);
+            consulta.setDia(diasDisponiveis);
             consulta.setCliente(cliente);
+            consulta.setPedido(pedido);
 
             service.Incluir(consulta);
             linha = leitura.readLine();

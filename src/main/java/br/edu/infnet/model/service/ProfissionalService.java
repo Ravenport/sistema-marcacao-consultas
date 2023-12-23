@@ -20,4 +20,8 @@ public class ProfissionalService {
     public Collection<Profissional> obterLista() {
         return (Collection<Profissional>) profissionalRepository.findAll();
     }
+
+    public void excluir(Integer id) {
+        profissionalRepository.deleteById(id);
+    }
 }

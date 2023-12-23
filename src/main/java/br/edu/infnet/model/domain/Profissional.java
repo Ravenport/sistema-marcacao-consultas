@@ -1,14 +1,6 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.springframework.cglib.core.Local;
-import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,14 +15,14 @@ public class Profissional {
     private String cnpj;
     private float valorConsulta;
 
-    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "profissional_id")
     private List<Consulta> consultas;
 
-    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "profissional_id")
     private List<DiasDisponiveis> datasDisponiveis;
-    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "profissional_id")
     private List<HorasDisponiveis> horasDisponiveis;
 

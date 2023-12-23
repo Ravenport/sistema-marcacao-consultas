@@ -1,9 +1,6 @@
 package br.edu.infnet.model.service;
 
-import br.edu.infnet.model.domain.Cliente;
-import br.edu.infnet.model.domain.DiasDisponiveis;
 import br.edu.infnet.model.domain.HorasDisponiveis;
-import br.edu.infnet.repository.DiasDisponiveisRepository;
 import br.edu.infnet.repository.HorasDisponiveisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +19,9 @@ public class HorasDisponiveisService {
 
     public Collection<HorasDisponiveis> obterLista() {
         return (Collection<HorasDisponiveis>) horasDisponiveisRepository.findAll();
+    }
+
+    public void excluir(Integer id) {
+        horasDisponiveisRepository.deleteById(id);
     }
 }

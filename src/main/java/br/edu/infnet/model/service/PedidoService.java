@@ -1,14 +1,11 @@
 package br.edu.infnet.model.service;
 
-import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.domain.Pedido;
 import br.edu.infnet.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class PedidoService {
@@ -22,5 +19,9 @@ public class PedidoService {
 
     public Collection<Pedido> obterLista() {
         return (Collection<Pedido>) pedidoRepository.findAll();
+    }
+
+    public void excluir(Integer id) {
+        pedidoRepository.deleteById(id);
     }
 }

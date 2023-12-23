@@ -1,9 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
@@ -13,26 +11,32 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
-    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    private LocalDateTime horario;
 
-    @Transient
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMMM/yyyy HH:mm:ss");
+    @ManyToOne
+    @JoinColumn(name = "horario_id")
+    private HorasDisponiveis horario;
+
+    @ManyToOne
+    @JoinColumn(name = "dia_id")
+    private DiasDisponiveis dia;
+
     @Override
     public String toString() {
         return "Consulta{" +
                 "profissional= " + profissional +
                 ", cliente= " + cliente +
-                ", horario= " + horario.format(dtf) +
+                ", horario= " + getHorario().getHora().format(DateTimeFormatter.ofPattern("HH:mm:ss")) +
+                ", Dia= " + dia.getData().format(DateTimeFormatter.ofPattern("dd/MMMM/yyyy")) +
                 '}';
     }
 
@@ -52,14 +56,6 @@ public class Consulta {
         this.cliente = cliente;
     }
 
-    public LocalDateTime getHorario() {
-        return horario;
-    }
-
-    public void setHorario(LocalDateTime horario) {
-        this.horario = horario;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -74,5 +70,21 @@ public class Consulta {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+    }
+
+    public DiasDisponiveis getDia() {
+        return dia;
+    }
+
+    public void setDia(DiasDisponiveis dia) {
+        this.dia = dia;
+    }
+
+    public HorasDisponiveis getHorario() {
+        return horario;
+    }
+
+    public void setHorario(HorasDisponiveis horario) {
+        this.horario = horario;
     }
 }

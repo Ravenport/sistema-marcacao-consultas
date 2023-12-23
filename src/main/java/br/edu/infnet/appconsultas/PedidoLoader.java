@@ -2,6 +2,7 @@ package br.edu.infnet.appconsultas;
 
 import br.edu.infnet.model.domain.*;
 import br.edu.infnet.model.service.PedidoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -14,9 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Order(8)
+@Order(6)
 public class PedidoLoader implements ApplicationRunner {
-    PedidoService service = new PedidoService();
+    @Autowired
+    PedidoService service;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -36,12 +38,8 @@ public class PedidoLoader implements ApplicationRunner {
             Cliente cliente = new Cliente();
             cliente.setId(Integer.valueOf(campos[2]));
 
-            Consulta consultas = new Consulta();
-            consultas.setId(Integer.valueOf(campos[5]));
-
             pedido.setCliente(cliente);
-            pedido.setConsultaConfirmada(Boolean.parseBoolean(campos[0]));
-            pedido.setFormaReserva(consultas);
+            pedido.setConsultaConfirmada(Boolean.parseBoolean(campos[1]));
 
             service.Incluir(pedido);
             linha = leitura.readLine();

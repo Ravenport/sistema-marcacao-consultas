@@ -1,9 +1,9 @@
 package br.edu.infnet.appconsultas;
 
 import br.edu.infnet.model.domain.DiasDisponiveis;
-import br.edu.infnet.model.domain.HorasDisponiveis;
+import br.edu.infnet.model.domain.Profissional;
 import br.edu.infnet.model.service.DiasDisponiveisService;
-import br.edu.infnet.model.service.HorasDisponiveisService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -14,10 +14,11 @@ import java.io.FileReader;
 import java.time.LocalDate;
 
 @Component
-@Order(1)
+@Order(2)
 public class DiasDisponiveisLoader implements ApplicationRunner {
 
-    private DiasDisponiveisService service = new DiasDisponiveisService();
+    @Autowired
+    private DiasDisponiveisService diasDisponiveisService;
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
@@ -31,15 +32,19 @@ public class DiasDisponiveisLoader implements ApplicationRunner {
         while (linha != null) {
             campos = linha.split(";");
 
+            Profissional profissional = new Profissional();
+            profissional.setId(Integer.valueOf(campos[1]));
+
             DiasDisponiveis diasDisponiveis = new DiasDisponiveis();
             diasDisponiveis.setData(LocalDate.parse(campos[0]));
+            diasDisponiveis.setProfissional(profissional);
 
-            service.Incluir(diasDisponiveis);
+            diasDisponiveisService.Incluir(diasDisponiveis);
 
             linha = leitura.readLine();
         }
 
-        for (DiasDisponiveis diasDisponiveis: service.obterLista()) {
+        for (DiasDisponiveis diasDisponiveis: diasDisponiveisService.obterLista()) {
             System.out.println("[Dias Disponiveis]: " + diasDisponiveis);
         }
         leitura.close();

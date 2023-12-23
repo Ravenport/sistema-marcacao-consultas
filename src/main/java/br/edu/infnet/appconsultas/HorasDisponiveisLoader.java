@@ -5,6 +5,7 @@ import br.edu.infnet.model.domain.HorasDisponiveis;
 import br.edu.infnet.model.domain.Profissional;
 import br.edu.infnet.model.service.HorasDisponiveisService;
 import br.edu.infnet.model.service.ProfissionalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -15,10 +16,11 @@ import java.io.FileReader;
 import java.time.LocalTime;
 
 @Component
-@Order(2)
+@Order(3)
 public class HorasDisponiveisLoader implements ApplicationRunner {
 
-    private HorasDisponiveisService service = new HorasDisponiveisService();
+    @Autowired
+    private HorasDisponiveisService service;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -33,8 +35,12 @@ public class HorasDisponiveisLoader implements ApplicationRunner {
         while (linha != null) {
             campos = linha.split(";");
 
+            Profissional profissional = new Profissional();
+            profissional.setId(Integer.valueOf(campos[1]));
+
             HorasDisponiveis horasDisponiveis = new HorasDisponiveis();
             horasDisponiveis.setHora(LocalTime.parse(campos[0]));
+            horasDisponiveis.setProfissional(profissional);
 
             service.Incluir(horasDisponiveis);
 
